@@ -1,0 +1,115 @@
+C51 COMPILER V9.59.0.0   BASE_TP5                                                          03/29/2022 12:01:36 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE BASE_TP5
+OBJECT MODULE PLACED IN Base_TP5.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Base_TP5.C OPTIMIZE(3,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
+
+line level    source
+
+   1          //------------------------------------------------------------------------------------
+   2          // Base_TP4_IRC
+   3          //------------------------------------------------------------------------------------
+   4          //
+   5          // AUTH: FJ
+   6          // DATE: 03-03-2022
+   7          // Target: C8051F02x
+   8          //
+   9          // Tool chain: KEIL Eval 'c'
+  10          //
+  11          //------------------------------------------------------------------------------------
+  12          // Includes
+  13          //------------------------------------------------------------------------------------
+  14          #include <c8051f020.h>                    // SFR declarations
+  15          //------------------------------------------------------------------------------------
+  16          // 16-bit SFR Definitions for 'F02x
+  17          //------------------------------------------------------------------------------------
+  18          sfr16 TMR3RL   = 0x92;                    // Timer3 reload value
+  19          sfr16 TMR3     = 0x94;                    // Timer3 counter
+  20          sfr16 ADC0     = 0xbe;                    // ADC0 data
+  21          sfr16 ADC0GT   = 0xc4;                    // ADC0 greater than window
+  22          sfr16 ADC0LT   = 0xc6;                    // ADC0 less than window
+  23          sfr16 RCAP2    = 0xca;                    // Timer2 capture/reload
+  24          sfr16 T2       = 0xcc;                    // Timer2
+  25          sfr16 RCAP4    = 0xe4;                    // Timer4 capture/reload
+  26          sfr16 T4       = 0xf4;                    // Timer4
+  27          sfr16 DAC0     = 0xd2;                    // DAC0 data
+  28          sfr16 DAC1     = 0xd5;                    // DAC1 data
+  29          
+  30          //------------------------------------------------------------------------------------
+  31          // Global CONSTANTS
+  32          //------------------------------------------------------------------------------------
+  33          
+  34          #define SYSCLK 22118400L //approximate SYSCLK frequency in Hz
+  35          #define LED_On 1
+  36          #define LED_Off 0
+  37          
+  38          // Eléments présents sur la carte 8051F020
+  39          sbit  LED = P1^6;  // LED verte: '1' = ON; '0' = OFF
+  40          sbit BP = P3^7;    // Bouton Poussoir '1' relaché, '0' pressé
+  41          
+  42          //------------------------------------------------------------------------------------
+  43          // Function PROTOTYPES
+  44          //------------------------------------------------------------------------------------
+  45          void Init_Device (void); // Fonction codée dans LIB_Base.c
+  46          void fct_tempo(unsigned int); // Fonction assembleur codée dans Asm_8051_Lib.asm
+  47          void send(unsigned char *s); // Send string
+  48          //------------------------------------------------------------------------------------
+  49          // MAIN Routine
+  50          //------------------------------------------------------------------------------------
+  51          void main (void) {
+  52   1      
+  53   1      // Configurations globales
+  54   1        Init_Device();
+  55   1      
+C51 COMPILER V9.59.0.0   BASE_TP5                                                          03/29/2022 12:01:36 PAGE 2   
+
+  56   1      // Configurations des Sorties GPIO
+  57   1      
+  58   1      // Initialisations des sorties  
+  59   1        LED = LED_Off;
+  60   1        
+  61   1        TR1 = 0;
+  62   1        TF1 = 0;
+  63   1        CKCON &= ~0x10;
+  64   1        SCON0=0x50;         //Mode 1, Baudrate generating using Timer 1
+  65   1        TMOD=0x20;          //Timer 1 Auto reload mode
+  66   1        TH1=TL1=0xfa;       //Values Calculated for 9600 baudrate
+  67   1        PCON |= (1<<7);     //Set SMOD0 = 1 so that we have 19200 baudrate
+  68   1        TR1=1;              //Run the timer
+  69   1        IE0 = 1;
+  70   1        EA= 1; //Global interupt = 1
+  71   1        
+  72   1        
+  73   1      // Boucle infinie 
+  74   1         while (1)
+  75   1         {  
+  76   2           LED = ~LED;
+  77   2           SBUF0 = 'c';
+  78   2           //TODO TCON
+  79   2           fct_tempo(50000);      
+  80   2         }
+  81   1      }
+  82          
+  83          //void send(unsigned char *s)
+  84          //{
+  85          //    while(*s) {
+  86          //        SBUF=*s++;
+  87          //        while(TI==0);
+  88          //        TI=0;
+  89          //    }
+  90          //}
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     48    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

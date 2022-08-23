@@ -1,0 +1,111 @@
+C51 COMPILER V9.59.0.0   LIB_BASE                                                          03/01/2022 11:36:09 PAGE 1   
+
+
+C51 COMPILER V9.59.0.0, COMPILATION OF MODULE LIB_BASE
+OBJECT MODULE PLACED IN Lib_Base.OBJ
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE Lib_Base.c OPTIMIZE(0,SPEED) REGFILE(.\TP3_IRC.ORC) BROWSE DEBUG OBJECTE
+                    -XTEND TABS(2)
+
+line level    source
+
+   1          //******************************************************************************
+   2          //TP_8051_Lib.asm
+   3          //   Ce fichier contient des définitions et des routines utiles au TP
+   4          //  Microcontrôleur
+   5          //  Aucune modification n'est nécessaire.
+   6          //  Il suffit d'ajouter ce fichier à votre Projet
+   7          //  TARGET MCU  :  C8051F020 
+   8          
+   9          //******************************************************************************
+  10          #include "C8051F020.h"
+  11          // Peripheral specific initialization functions,
+  12          // Called from the Init_Device() function
+  13          
+  14          //-----------------------------------------------------------------------------
+  15          // Dévalidation du watchdog
+  16          //-----------------------------------------------------------------------------
+  17          void Reset_Sources_Init()
+  18          {
+  19   1          WDTCN     = 0xDE;
+  20   1          WDTCN     = 0xAD;
+  21   1      }
+  22          //-----------------------------------------------------------------------------
+  23          // Configuration des Ports d'entrée-sorties
+  24          //-----------------------------------------------------------------------------
+  25          void Port_IO_Init()
+  26          {
+  27   1          // P0.0  -  TX0 (UART0), Push-Pull,  Digital
+  28   1          // P0.1  -  RX0 (UART0), Open-Drain, Digital
+  29   1          // P0.2  -  CEX0 (PCA),  Push-Pull,  Digital
+  30   1          // P0.3  -  CEX1 (PCA),  Open-Drain, Digital
+  31   1          // P0.4  -  CEX2 (PCA),  Open-Drain, Digital
+  32   1          // P0.5  -  CEX3 (PCA),  Open-Drain, Digital
+  33   1          // P0.6  -  ECI,         Open-Drain, Digital
+  34   1          // P0.7  -  T0 (Timer0), Push-Pull,  Digital
+  35   1      
+  36   1          // P1.0  -  INT0 (Tmr0),         Open-Drain, Digital
+  37   1          // P1.1  -  T1 (Timer1),         Open-Drain, Digital
+  38   1          // P1.2  -  INT1 (Tmr1),         Open-Drain, Digital
+  39   1          // P1.3  -  T2 (Timer2),         Open-Drain, Digital
+  40   1          // P1.4  -  T2EX (Tmr2),         Open-Drain, Digital
+  41   1          // P1.5  -  SYSCLK,              Push-Pull,  Digital   Visu Horloge Système
+  42   1          // P1.6  -  General Purpose I/O, Open-Drain, Digital   Port LED
+  43   1          // P1.7  -  General Purpose I/O, Open-Drain, Digital
+  44   1      
+  45   1          // P2.0  -  General Purpose I/O, Open-Drain, Digital
+  46   1          // à...
+  47   1          // P3.7  -  General Purpose I/O, Open-Drain, Digital
+  48   1      
+  49   1          P0MDOUT   = 0x85;
+  50   1          P1MDOUT   = 0x00;
+  51   1          P2MDOUT   = 0x00;
+  52   1          P3MDOUT   = 0x00;
+  53   1          P74OUT    = 0x01;
+  54   1          P1MDIN    = 0xFF;
+C51 COMPILER V9.59.0.0   LIB_BASE                                                          03/01/2022 11:36:09 PAGE 2   
+
+  55   1      
+  56   1          XBR0      = 0x64;
+  57   1          XBR1      = 0xFE;
+  58   1          XBR2      = 0x40;
+  59   1      
+  60   1          P2        = 0;
+  61   1          P1        = 0;
+  62   1          P3        = 0;
+  63   1          P4        = 0;
+  64   1      }
+  65          
+  66          //-----------------------------------------------------------------------------
+  67          // Configuration de l'oscillateur - SYSCLK = Clock externe 22118400Hz 
+  68          //-----------------------------------------------------------------------------
+  69          void Oscillator_Init()
+  70          {
+  71   1          int i = 0;
+  72   1          OSCXCN    = 0x67;
+  73   1          for (i = 0; i < 3000; i++);  // Wait 1ms for initialization
+  74   1          while ((OSCXCN & 0x80) == 0);
+  75   1          OSCICN    = 0x0C;
+  76   1      }
+  77          //-----------------------------------------------------------------------------
+  78          // Initialisation globale du Microcontrôleur - 
+  79          //-----------------------------------------------------------------------------
+  80          void Init_Device(void)
+  81          {
+  82   1          Reset_Sources_Init();
+  83   1          Port_IO_Init();
+  84   1          Oscillator_Init();
+  85   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    110    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      2    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

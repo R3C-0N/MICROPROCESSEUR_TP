@@ -1,0 +1,496 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    03/01/2022  11:36:09  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE STARTUP.obj, Lib_Base.obj, Asm_8051_Lib.obj, Base_TP3.obj TO TP3_IRC REGFILE (.\TP3_IRC.ORC)
+>>  RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  STARTUP.obj (?C_STARTUP)
+  Lib_Base.obj (LIB_BASE)
+  Asm_8051_Lib.obj (ASM_8051_LIB)
+  Base_TP3.obj (BASE_TP3)
+
+
+LINK MAP OF MODULE:  TP3_IRC (?C_STARTUP)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0002H     UNIT         ?DT?OSCILLATOR_INIT?LIB_BASE
+            IDATA   000AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0122H     UNIT         TIMER_UARTLIB
+            CODE    0125H     0035H     UNIT         ?PR?OSCILLATOR_INIT?LIB_BASE
+            CODE    015AH     002DH     UNIT         ?PR?MAIN?BASE_TP3
+            CODE    0187H     0028H     UNIT         ?PR?PORT_IO_INIT?LIB_BASE
+            CODE    01AFH     000CH     UNIT         ?C_C51STARTUP
+            CODE    01BBH     000AH     UNIT         ?PR?INIT_DEVICE?LIB_BASE
+            CODE    01C5H     0007H     UNIT         ?PR?RESET_SOURCES_INIT?LIB_BASE
+
+
+
+OVERLAY MAP OF MODULE:   TP3_IRC (?C_STARTUP)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?C_C51STARTUP
+  +--> ?PR?MAIN?BASE_TP3
+
+?PR?MAIN?BASE_TP3
+  +--> ?PR?INIT_DEVICE?LIB_BASE
+
+?PR?INIT_DEVICE?LIB_BASE
+  +--> ?PR?RESET_SOURCES_INIT?LIB_BASE
+  +--> ?PR?PORT_IO_INIT?LIB_BASE
+  +--> ?PR?OSCILLATOR_INIT?LIB_BASE
+
+
+
+SYMBOL TABLE OF MODULE:  TP3_IRC (?C_STARTUP)
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/01/2022  11:36:09  PAGE 2
+
+
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        ?C_STARTUP
+  C:01AFH         SEGMENT       ?C_C51STARTUP
+  I:000AH         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:01B2H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:01AFH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:01AFH         LINE#         133
+  C:01B1H         LINE#         134
+  C:01B2H         LINE#         135
+  C:01B3H         LINE#         136
+  C:01B5H         LINE#         185
+  C:01B8H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        LIB_BASE
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00FFH         PUBLIC        WDTCN
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:0084H         PUBLIC        P4
+  D:00E8H         PUBLIC        ADC0CN
+  D:00A4H         PUBLIC        P0MDOUT
+  D:00A5H         PUBLIC        P1MDOUT
+  D:00A8H         PUBLIC        IE
+  D:00A6H         PUBLIC        P2MDOUT
+  D:00A7H         PUBLIC        P3MDOUT
+  C:0187H         PUBLIC        Port_IO_Init
+  D:00D8H         PUBLIC        PCA0CN
+  D:00B8H         PUBLIC        IP
+  C:0125H         PUBLIC        Oscillator_Init
+  D:00E1H         PUBLIC        XBR0
+  D:00E2H         PUBLIC        XBR1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/01/2022  11:36:09  PAGE 3
+
+
+  D:00E3H         PUBLIC        XBR2
+  D:00C0H         PUBLIC        SMB0CN
+  D:00BDH         PUBLIC        P1MDIN
+  D:00F8H         PUBLIC        SPI0CN
+  D:00B5H         PUBLIC        P74OUT
+  D:0088H         PUBLIC        TCON
+  D:00B2H         PUBLIC        OSCICN
+  C:01C5H         PUBLIC        Reset_Sources_Init
+  C:01BBH         PUBLIC        Init_Device
+  D:00B1H         PUBLIC        OSCXCN
+  D:0098H         PUBLIC        SCON0
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          RESET_SOURCES_INIT
+  C:01C5H         LINE#         17
+  C:01C5H         LINE#         18
+  C:01C5H         LINE#         19
+  C:01C8H         LINE#         20
+  C:01CBH         LINE#         21
+  -------         ENDPROC       RESET_SOURCES_INIT
+  -------         PROC          PORT_IO_INIT
+  C:0187H         LINE#         25
+  C:0187H         LINE#         26
+  C:0187H         LINE#         49
+  C:018AH         LINE#         50
+  C:018DH         LINE#         51
+  C:0190H         LINE#         52
+  C:0193H         LINE#         53
+  C:0196H         LINE#         54
+  C:0199H         LINE#         56
+  C:019CH         LINE#         57
+  C:019FH         LINE#         58
+  C:01A2H         LINE#         60
+  C:01A5H         LINE#         61
+  C:01A8H         LINE#         62
+  C:01ABH         LINE#         63
+  C:01AEH         LINE#         64
+  -------         ENDPROC       PORT_IO_INIT
+  -------         PROC          OSCILLATOR_INIT
+  -------         DO            
+  D:0008H         SYMBOL        i
+  -------         ENDDO         
+  C:0125H         LINE#         69
+  C:0125H         LINE#         70
+  C:0125H         LINE#         71
+  C:012BH         LINE#         72
+  C:012EH         LINE#         73
+  C:014BH         LINE#         74
+  C:0156H         LINE#         75
+  C:0159H         LINE#         76
+  -------         ENDPROC       OSCILLATOR_INIT
+  -------         PROC          INIT_DEVICE
+  C:01BBH         LINE#         80
+  C:01BBH         LINE#         81
+  C:01BBH         LINE#         82
+  C:01BEH         LINE#         83
+  C:01C1H         LINE#         84
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/01/2022  11:36:09  PAGE 4
+
+
+  C:01C4H         LINE#         85
+  -------         ENDPROC       INIT_DEVICE
+  -------         ENDMOD        LIB_BASE
+
+  -------         MODULE        ASM_8051_LIB
+  C:0003H         SEGMENT       TIMER_UARTLIB
+  C:0025H         PUBLIC        SIN_TABLE
+  C:0003H         PUBLIC        _FCT_TEMPO
+  C:000DH         SYMBOL        ?C0001
+  C:0018H         SYMBOL        ?C0003
+  C:001EH         SYMBOL        ?C0005
+  C:000DH         SYMBOL        ?C0006
+  C:0016H         SYMBOL        ?C0007
+  B:00C0H.2       SYMBOL        AA
+  B:00D0H.6       SYMBOL        AC
+  D:00E0H         SYMBOL        ACC
+  B:00E8H.4       SYMBOL        AD0BUSY
+  B:00E8H.7       SYMBOL        AD0EN
+  B:00E8H.5       SYMBOL        AD0INT
+  B:00E8H.0       SYMBOL        AD0LJST
+  B:00E8H.2       SYMBOL        AD0STM0
+  B:00E8H.3       SYMBOL        AD0STM1
+  B:00E8H.6       SYMBOL        AD0TM
+  B:00E8H.1       SYMBOL        AD0WINT
+  D:00BCH         SYMBOL        ADC0CF
+  D:00E8H         SYMBOL        ADC0CN
+  D:00C5H         SYMBOL        ADC0GTH
+  D:00C4H         SYMBOL        ADC0GTL
+  D:00BFH         SYMBOL        ADC0H
+  D:00BEH         SYMBOL        ADC0L
+  D:00C7H         SYMBOL        ADC0LTH
+  D:00C6H         SYMBOL        ADC0LTL
+  D:009CH         SYMBOL        ADC1
+  D:00ABH         SYMBOL        ADC1CF
+  D:00AAH         SYMBOL        ADC1CN
+  D:00BAH         SYMBOL        AMX0CF
+  D:00BBH         SYMBOL        AMX0SL
+  D:00ACH         SYMBOL        AMX1SL
+  D:00F0H         SYMBOL        B
+  B:00D8H.0       SYMBOL        CCF0
+  B:00D8H.1       SYMBOL        CCF1
+  B:00D8H.2       SYMBOL        CCF2
+  B:00D8H.3       SYMBOL        CCF3
+  B:00D8H.4       SYMBOL        CCF4
+  B:00D8H.7       SYMBOL        CF
+  D:008EH         SYMBOL        CKCON
+  B:00C8H.0       SYMBOL        CPRL2
+  D:009EH         SYMBOL        CPT0CN
+  D:009FH         SYMBOL        CPT1CN
+  B:00D8H.6       SYMBOL        CR
+  B:00C8H.1       SYMBOL        CT2
+  B:00D0H.7       SYMBOL        CY
+  D:00D4H         SYMBOL        DAC0CN
+  D:00D3H         SYMBOL        DAC0H
+  D:00D2H         SYMBOL        DAC0L
+  D:00D7H         SYMBOL        DAC1CN
+  D:00D6H         SYMBOL        DAC1H
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/01/2022  11:36:09  PAGE 5
+
+
+  D:00D5H         SYMBOL        DAC1L
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  B:00A8H.7       SYMBOL        EA
+  D:00E6H         SYMBOL        EIE1
+  D:00E7H         SYMBOL        EIE2
+  D:00F6H         SYMBOL        EIP1
+  D:00F7H         SYMBOL        EIP2
+  D:00A3H         SYMBOL        EMI0CF
+  D:00AFH         SYMBOL        EMI0CN
+  D:00A1H         SYMBOL        EMI0TC
+  B:00C0H.6       SYMBOL        ENSMB
+  B:00A8H.4       SYMBOL        ES
+  B:00A8H.1       SYMBOL        ET0
+  B:00A8H.3       SYMBOL        ET1
+  B:00A8H.5       SYMBOL        ET2
+  B:00A8H.0       SYMBOL        EX0
+  B:00A8H.2       SYMBOL        EX1
+  B:00C8H.3       SYMBOL        EXEN2
+  B:00C8H.6       SYMBOL        EXF2
+  B:00D0H.5       SYMBOL        F0
+  B:00D0H.1       SYMBOL        F1
+  D:00B7H         SYMBOL        FLACL
+  D:00B6H         SYMBOL        FLSCL
+  D:00A8H         SYMBOL        IE
+  B:0088H.1       SYMBOL        IE0
+  B:0088H.3       SYMBOL        IE1
+  D:00B8H         SYMBOL        IP
+  B:0088H.0       SYMBOL        IT0
+  B:0088H.2       SYMBOL        IT1
+  B:00F8H.5       SYMBOL        MODF
+  B:00F8H.1       SYMBOL        MSTEN
+  D:00B2H         SYMBOL        OSCICN
+  D:00B1H         SYMBOL        OSCXCN
+  B:00D0H.2       SYMBOL        OV
+  B:00D0H.0       SYMBOL        P
+  D:0080H         SYMBOL        P0
+  D:00A4H         SYMBOL        P0MDOUT
+  D:0090H         SYMBOL        P1
+  D:00BDH         SYMBOL        P1MDIN
+  D:00A5H         SYMBOL        P1MDOUT
+  D:00A0H         SYMBOL        P2
+  D:00A6H         SYMBOL        P2MDOUT
+  D:00B0H         SYMBOL        P3
+  D:00ADH         SYMBOL        P3IF
+  D:00A7H         SYMBOL        P3MDOUT
+  D:0084H         SYMBOL        P4
+  D:0085H         SYMBOL        P5
+  D:0086H         SYMBOL        P6
+  D:0096H         SYMBOL        P7
+  D:00B5H         SYMBOL        P74OUT
+  D:00D8H         SYMBOL        PCA0CN
+  D:00FAH         SYMBOL        PCA0CPH0
+  D:00FBH         SYMBOL        PCA0CPH1
+  D:00FCH         SYMBOL        PCA0CPH2
+  D:00FDH         SYMBOL        PCA0CPH3
+  D:00FEH         SYMBOL        PCA0CPH4
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/01/2022  11:36:09  PAGE 6
+
+
+  D:00EAH         SYMBOL        PCA0CPL0
+  D:00EBH         SYMBOL        PCA0CPL1
+  D:00ECH         SYMBOL        PCA0CPL2
+  D:00EDH         SYMBOL        PCA0CPL3
+  D:00EEH         SYMBOL        PCA0CPL4
+  D:00DAH         SYMBOL        PCA0CPM0
+  D:00DBH         SYMBOL        PCA0CPM1
+  D:00DCH         SYMBOL        PCA0CPM2
+  D:00DDH         SYMBOL        PCA0CPM3
+  D:00DEH         SYMBOL        PCA0CPM4
+  D:00F9H         SYMBOL        PCA0H
+  D:00E9H         SYMBOL        PCA0L
+  D:00D9H         SYMBOL        PCA0MD
+  D:0087H         SYMBOL        PCON
+  B:00B8H.4       SYMBOL        PS
+  D:008FH         SYMBOL        PSCTL
+  D:00D0H         SYMBOL        PSW
+  B:00B8H.1       SYMBOL        PT0
+  B:00B8H.3       SYMBOL        PT1
+  B:00B8H.5       SYMBOL        PT2
+  B:00B8H.0       SYMBOL        PX0
+  B:00B8H.2       SYMBOL        PX1
+  B:0098H.2       SYMBOL        RB8
+  D:00CBH         SYMBOL        RCAP2H
+  D:00CAH         SYMBOL        RCAP2L
+  D:00E5H         SYMBOL        RCAP4H
+  D:00E4H         SYMBOL        RCAP4L
+  B:00C8H.5       SYMBOL        RCLK
+  D:00D1H         SYMBOL        REF0CN
+  B:0098H.4       SYMBOL        REN
+  B:0098H.0       SYMBOL        RI
+  B:00D0H.3       SYMBOL        RS0
+  B:00D0H.4       SYMBOL        RS1
+  D:00EFH         SYMBOL        RSTSRC
+  B:00F8H.4       SYMBOL        RXOVRN
+  D:00A9H         SYMBOL        SADDR0
+  D:00F3H         SYMBOL        SADDR1
+  D:00B9H         SYMBOL        SADEN0
+  D:00AEH         SYMBOL        SADEN1
+  D:0099H         SYMBOL        SBUF0
+  D:00F2H         SYMBOL        SBUF1
+  D:0098H         SYMBOL        SCON0
+  D:00F1H         SYMBOL        SCON1
+  B:00C0H.3       SYMBOL        SI
+  B:00F8H.2       SYMBOL        SLVSEL
+  B:0098H.7       SYMBOL        SM0
+  B:0098H.6       SYMBOL        SM1
+  B:0098H.5       SYMBOL        SM2
+  D:00C3H         SYMBOL        SMB0ADR
+  D:00C0H         SYMBOL        SMB0CN
+  D:00CFH         SYMBOL        SMB0CR
+  D:00C2H         SYMBOL        SMB0DAT
+  D:00C1H         SYMBOL        SMB0STA
+  B:00C0H.1       SYMBOL        SMBFTE
+  B:00C0H.0       SYMBOL        SMBTOE
+  D:0081H         SYMBOL        SP
+  D:009AH         SYMBOL        SPI0CFG
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/01/2022  11:36:09  PAGE 7
+
+
+  D:009DH         SYMBOL        SPI0CKR
+  D:00F8H         SYMBOL        SPI0CN
+  D:009BH         SYMBOL        SPI0DAT
+  B:00F8H.0       SYMBOL        SPIEN
+  B:00F8H.7       SYMBOL        SPIF
+  B:00C0H.5       SYMBOL        STA
+  B:00C0H.4       SYMBOL        STO
+  D:00C8H         SYMBOL        T2CON
+  D:00C9H         SYMBOL        T4CON
+  B:0098H.3       SYMBOL        TB8
+  B:00C8H.4       SYMBOL        TCLK
+  D:0088H         SYMBOL        TCON
+  B:0088H.5       SYMBOL        TF0
+  B:0088H.7       SYMBOL        TF1
+  B:00C8H.7       SYMBOL        TF2
+  D:008CH         SYMBOL        TH0
+  D:008DH         SYMBOL        TH1
+  D:00CDH         SYMBOL        TH2
+  D:00F5H         SYMBOL        TH4
+  B:0098H.1       SYMBOL        TI
+  D:008AH         SYMBOL        TL0
+  D:008BH         SYMBOL        TL1
+  D:00CCH         SYMBOL        TL2
+  D:00F4H         SYMBOL        TL4
+  D:0089H         SYMBOL        TMOD
+  D:0091H         SYMBOL        TMR3CN
+  D:0095H         SYMBOL        TMR3H
+  D:0094H         SYMBOL        TMR3L
+  D:0093H         SYMBOL        TMR3RLH
+  D:0092H         SYMBOL        TMR3RLL
+  B:0088H.4       SYMBOL        TR0
+  B:0088H.6       SYMBOL        TR1
+  B:00C8H.2       SYMBOL        TR2
+  B:00F8H.3       SYMBOL        TXBSY
+  B:00F8H.6       SYMBOL        WCOL
+  D:00FFH         SYMBOL        WDTCN
+  D:00E1H         SYMBOL        XBR0
+  D:00E2H         SYMBOL        XBR1
+  D:00E3H         SYMBOL        XBR2
+  C:0003H         LINE#         42
+  C:0005H         LINE#         43
+  C:0006H         LINE#         44
+  C:0008H         LINE#         45
+  C:0009H         LINE#         46
+  C:000AH         LINE#         47
+  C:000CH         LINE#         48
+  C:000DH         LINE#         51
+  C:000EH         LINE#         52
+  C:000FH         LINE#         53
+  C:0011H         LINE#         55
+  C:0012H         LINE#         56
+  C:0013H         LINE#         57
+  C:0015H         LINE#         58
+  C:0016H         LINE#         60
+  C:0018H         LINE#         62
+  C:0019H         LINE#         63
+  C:001BH         LINE#         64
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/01/2022  11:36:09  PAGE 8
+
+
+  C:001CH         LINE#         65
+  C:001EH         LINE#         67
+  C:0020H         LINE#         68
+  C:0022H         LINE#         69
+  C:0024H         LINE#         70
+  -------         ENDMOD        ASM_8051_LIB
+
+  -------         MODULE        BASE_TP3
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:0084H         PUBLIC        P4
+  B:00A8H.7       PUBLIC        EA
+  D:00E8H         PUBLIC        ADC0CN
+  D:00A5H         PUBLIC        P1MDOUT
+  D:00A8H         PUBLIC        IE
+  D:00A7H         PUBLIC        P3MDOUT
+  D:00D8H         PUBLIC        PCA0CN
+  D:00B8H         PUBLIC        IP
+  D:00C0H         PUBLIC        SMB0CN
+  C:015AH         PUBLIC        main
+  D:00F8H         PUBLIC        SPI0CN
+  D:0088H         PUBLIC        TCON
+  B:00A8H.0       PUBLIC        EX0
+  B:0090H.6       PUBLIC        LED
+  D:0098H         PUBLIC        SCON0
+  D:00C8H         PUBLIC        T2CON
+  B:00B0H.4       PUBLIC        Tst4
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  C:015AH         LINE#         58
+  C:015AH         LINE#         63
+  C:015DH         LINE#         64
+  C:015FH         LINE#         65
+  C:0161H         LINE#         66
+  C:0164H         LINE#         67
+  C:0167H         LINE#         71
+  C:016AH         LINE#         72
+  C:016CH         LINE#         73
+  C:016EH         LINE#         75
+  C:016EH         LINE#         76
+  C:016EH         LINE#         77
+  C:0170H         LINE#         78
+  C:0172H         LINE#         81
+  C:0175H         LINE#         82
+  C:0178H         LINE#         84
+  C:017AH         LINE#         85
+  C:017AH         LINE#         86
+  C:017DH         LINE#         88
+  C:017DH         LINE#         92
+  C:0184H         LINE#         93
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        BASE_TP3
+
+
+
+FUNCTION REGISTER MASKS
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  03/01/2022  11:36:09  PAGE 9
+
+
+
+
+FUNCTION . . . . . . . REG MASK
+-------------------------------
+
+INIT_DEVICE. . . . . . @0xf003
+OSCILLATOR_INIT. . . . @0xf003
+PORT_IO_INIT . . . . . @0x8000
+RESET_SOURCES_INIT . . @0x8000
+
+Program Size: data=11.0 xdata=0 code=460
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)
